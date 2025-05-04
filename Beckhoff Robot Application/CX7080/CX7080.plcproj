@@ -3,19 +3,19 @@
   <PropertyGroup>
     <FileVersion>1.0.0.0</FileVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5ddc8d96-1ef1-44ab-8205-ea81d7d3cec5}</ProjectGuid>
+    <ProjectGuid>{6c07d8e3-8aa0-425c-b5b1-4e7cf328cf0c}</ProjectGuid>
     <SubObjectsSortedByName>True</SubObjectsSortedByName>
     <DownloadApplicationInfo>true</DownloadApplicationInfo>
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
-    <Name>Beckhoff_CX7080</Name>
+    <Name>CX7080</Name>
     <ProgramVersion>3.1.4024.0</ProgramVersion>
-    <Application>{ec2a33b0-6f81-48dd-b3ff-cfe10ddcaab5}</Application>
-    <TypeSystem>{ecabfb1c-2fec-4884-b487-b9bf63ed15a7}</TypeSystem>
-    <Implicit_Task_Info>{8db3715c-fb03-40ed-988f-7f5673b3c13e}</Implicit_Task_Info>
-    <Implicit_KindOfTask>{8709b410-b4cf-4252-8baa-f50988217565}</Implicit_KindOfTask>
-    <Implicit_Jitter_Distribution>{c9541690-c9e5-44e8-ae14-848902245711}</Implicit_Jitter_Distribution>
-    <LibraryReferences>{32766d82-d4f5-4c6e-8d25-36017f3e029c}</LibraryReferences>
+    <Application>{c4e23da9-eba7-4cac-b4d4-35f5381731f8}</Application>
+    <TypeSystem>{68f1382b-8f84-4483-9df3-bffe1adab3fd}</TypeSystem>
+    <Implicit_Task_Info>{a2e35b04-9c2c-4362-98ab-b6f849ce38d9}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{97dad307-bc5e-4ec6-8eae-9b477c49bcd8}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{a90f286a-5676-4679-83a7-fa2cece37a39}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{f4a0574d-bdac-4a40-ac4b-5931b23b2bef}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\state_enum.TcDUT">
@@ -31,7 +31,7 @@
     <Compile Include="POUs\main_prg.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\startup_sequence.TcPOU">
+    <Compile Include="POUs\startup_sequence_prg.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -54,6 +54,11 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CX7080.tmc">
+      <SubType>Content</SubType>
+    </None>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
