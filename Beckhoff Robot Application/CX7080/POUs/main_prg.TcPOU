@@ -3,10 +3,27 @@
   <POU Name="main_prg" Id="{d2e50d88-1667-4ab6-82f1-5fbb225b1eb8}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM main_prg
 VAR
+
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[CASE gvl.system_state OF
+state_enum.startup_mode:
+	
+state_enum.jog_joint_mode:
+	
+state_enum.jog_cartesian_mode:
+	
+state_enum.manual_mode:
+	
+state_enum.emg_stop_mode:
+	
+state_enum.comm_fault_mode:
+	
+state_enum.auto_mode:
+	
+	
+END_CASE]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
