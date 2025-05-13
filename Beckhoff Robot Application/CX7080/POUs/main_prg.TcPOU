@@ -3,26 +3,40 @@
   <POU Name="main_prg" Id="{d2e50d88-1667-4ab6-82f1-5fbb225b1eb8}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM main_prg
 VAR
-
+	last_state : state_enum;
+	fb_Startup : FB_Startup;
+	fb_Auto : FB_Auto;
+	fb_Comm_Fault : FB_Comm_Fault;
+	fb_Emg_Stop : FB_Emg_Stop;
+	fb_Jog_Cartesian : FB_Jog_Cartesian;
+	fb_Jog_Joint : FB_Jog_Joint;
+	fb_Manual : FB_Manual;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[CASE gvl.system_state OF
+      <ST><![CDATA[IF GVL.PB_EMG_STOP THEN
+	GVL.system_state := state_enum.emg_stop_mode;
+ELSIF GVL.modbus_comm_fault THEN
+	GVL.system_state := state_enum.comm_fault_mode;
+END_IF
+
+
+CASE gvl.system_state OF
 state_enum.startup_mode:
-	
+	fb_Startup();
 state_enum.jog_joint_mode:
-	
+	fb_Jog_Joint();
 state_enum.jog_cartesian_mode:
-	
+	fb_Jog_Cartesian();
 state_enum.manual_mode:
-	
+	fb_Manual();
 state_enum.emg_stop_mode:
-	
+	fb_Emg_Stop();
 state_enum.comm_fault_mode:
-	
+	fb_Comm_Fault();
 state_enum.auto_mode:
-	
-	
+	fb_Auto();
 END_CASE]]></ST>
     </Implementation>
   </POU>
