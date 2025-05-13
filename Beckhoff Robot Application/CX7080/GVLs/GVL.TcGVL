@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <GVL Name="GVL" Id="{6855ee8d-008b-438b-bf55-2ed7d4bc7b96}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	// Internal system parameters
+	system_state : state_enum := state_enum.startup_mode; // Used to keep track of system state machine. Initialized in startup_mode.
+	
+	// Inputs
+	input1 AT %I* : BOOL;
+	output1 AT %Q* : BOOL;
+	PB_J1_CW AT %I* : BOOL;
+	PB_J1_CCW AT %I*: BOOL;
+	PB_J2_CW AT %I* : BOOL;
+	PB_J2_CCW AT %I* : BOOL;
+	PB_J3_CW AT %I* : BOOL;
+	PB_J3_CCW AT %I* : BOOL;
+	PB_EE_Grip AT %I* : BOOL;
+	PB_EE_Ungrip AT %I* : BOOL;
+	PB_EMG_STOP AT %I* : BOOL;
+	PB_Reset AT %I* : BOOL;
+	PB_Record_Pos AT %I* : BOOL;
+	PB_Record_Delay AT %I* : BOOL;
+	PB_Start_Pause AT %I* : BOOL;
+	SW_Slow_Fast AT %I* : BOOL;
+	SW_Join_Cart AT %I* : BOOL;
+	
+	// Outputs
+	LED_J1_CW AT %Q* : BOOL;
+	LED_J1_CCW AT %Q*: BOOL;
+	LED_J2_CW AT %Q* : BOOL;
+	LED_J2_CCW AT %Q* : BOOL;
+	LED_J3_CW AT %Q* : BOOL;
+	LED_J3_CCW AT %Q* : BOOL;
+	LED_EE_Grip AT %Q* : BOOL;
+	LED_EE_Ungrip AT %Q* : BOOL;
+	LED_EMG_STOP AT %Q* : BOOL;
+	LED_Reset AT %Q* : BOOL;
+	LED_Record_Pos AT %Q* : BOOL;
+	LED_Record_Delay AT %Q* : BOOL;
+	LED_Start_Pause AT %Q* : BOOL;
+	LED_Comm_Fault AT %Q* : BOOL;
+	LED_Warning AT %Q* : BOOL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
