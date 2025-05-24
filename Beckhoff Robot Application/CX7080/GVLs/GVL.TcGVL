@@ -5,6 +5,10 @@
 VAR_GLOBAL
 	// Internal system parameters
 	system_state : state_enum := state_enum.startup_mode; // Used to keep track of system state machine. Initialized in startup_mode.
+	modbus_comm_fault : BOOL := FALSE;
+	J1_Home_Pos : INT := 135; // Degrees
+	J2_Home_Pos : INT := 135; // Degrees
+	J3_Home_Pos : INT := 135; // Degrees
 	
 	// Inputs
 	input1 AT %I* : BOOL;

@@ -11,7 +11,7 @@ VAR
 	fb_Jog_Cartesian : FB_Jog_Cartesian;
 	fb_Jog_Joint : FB_Jog_Joint;
 	fb_Manual : FB_Manual;
-	
+	fb_ModbusComm : FB_ModbusComm;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -37,7 +37,11 @@ state_enum.comm_fault_mode:
 	fb_Comm_Fault();
 state_enum.auto_mode:
 	fb_Auto();
-END_CASE]]></ST>
+END_CASE
+
+fb_ModbusComm();
+
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

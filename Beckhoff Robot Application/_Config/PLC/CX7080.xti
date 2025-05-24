@@ -1,140 +1,142 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.62" ClassName="CNestedPlcProjDef">
 	<Project GUID="{6C07D8E3-8AA0-425C-B5B1-4E7CF328CF0C}" Name="CX7080" PrjFilePath="..\..\CX7080\CX7080.plcproj" TmcFilePath="..\..\CX7080\CX7080.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX7080\CX7080.tmc" TmcHash="{66355651-C99F-2EC9-909E-3C2E341502CC}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX7080\CX7080.tmc" TmcHash="{8B3CA622-B1BF-FA38-D729-AAB514EB1FA8}">
 			<Name>CX7080 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
 				<Var>
-					<Name>Global_Variables.input1</Name>
+					<Name>GVL.input1</Name>
+					<Comment><![CDATA[ Inputs]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_J1_CW</Name>
+					<Name>GVL.PB_J1_CW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_J1_CCW</Name>
+					<Name>GVL.PB_J1_CCW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_J2_CW</Name>
+					<Name>GVL.PB_J2_CW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_J2_CCW</Name>
+					<Name>GVL.PB_J2_CCW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_J3_CW</Name>
+					<Name>GVL.PB_J3_CW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_J3_CCW</Name>
+					<Name>GVL.PB_J3_CCW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_EE_Grip</Name>
+					<Name>GVL.PB_EE_Grip</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_EE_Ungrip</Name>
+					<Name>GVL.PB_EE_Ungrip</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_EMG_STOP</Name>
+					<Name>GVL.PB_EMG_STOP</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_Reset</Name>
+					<Name>GVL.PB_Reset</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_Record_Pos</Name>
+					<Name>GVL.PB_Record_Pos</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_Record_Delay</Name>
+					<Name>GVL.PB_Record_Delay</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.PB_Start_Pause</Name>
+					<Name>GVL.PB_Start_Pause</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.SW_Slow_Fast</Name>
+					<Name>GVL.SW_Slow_Fast</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.SW_Join_Cart</Name>
+					<Name>GVL.SW_Join_Cart</Name>
 					<Type>BOOL</Type>
 				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>Global_Variables.output1</Name>
+					<Name>GVL.output1</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_J1_CW</Name>
+					<Name>GVL.LED_J1_CW</Name>
+					<Comment><![CDATA[ Outputs]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_J1_CCW</Name>
+					<Name>GVL.LED_J1_CCW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_J2_CW</Name>
+					<Name>GVL.LED_J2_CW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_J2_CCW</Name>
+					<Name>GVL.LED_J2_CCW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_J3_CW</Name>
+					<Name>GVL.LED_J3_CW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_J3_CCW</Name>
+					<Name>GVL.LED_J3_CCW</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_EE_Grip</Name>
+					<Name>GVL.LED_EE_Grip</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_EE_Ungrip</Name>
+					<Name>GVL.LED_EE_Ungrip</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_EMG_STOP</Name>
+					<Name>GVL.LED_EMG_STOP</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_Reset</Name>
+					<Name>GVL.LED_Reset</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_Record_Pos</Name>
+					<Name>GVL.LED_Record_Pos</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_Record_Delay</Name>
+					<Name>GVL.LED_Record_Delay</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_Start_Pause</Name>
+					<Name>GVL.LED_Start_Pause</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_Comm_Fault</Name>
+					<Name>GVL.LED_Comm_Fault</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Global_Variables.LED_Warning</Name>
+					<Name>GVL.LED_Warning</Name>
 					<Type>BOOL</Type>
 				</Var>
 			</Vars>
