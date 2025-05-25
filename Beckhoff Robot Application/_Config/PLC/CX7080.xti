@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.62" ClassName="CNestedPlcProjDef">
 	<Project GUID="{6C07D8E3-8AA0-425C-B5B1-4E7CF328CF0C}" Name="CX7080" PrjFilePath="..\..\CX7080\CX7080.plcproj" TmcFilePath="..\..\CX7080\CX7080.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX7080\CX7080.tmc" TmcHash="{8B3CA622-B1BF-FA38-D729-AAB514EB1FA8}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX7080\CX7080.tmc" TmcHash="{7E54340C-B892-C00B-172E-46C04F0C13D0}">
 			<Name>CX7080 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
+				<Var>
+					<Name>GVL.PB_EMG_STOP</Name>
+					<Type>BOOL</Type>
+				</Var>
 				<Var>
 					<Name>GVL.input1</Name>
 					<Comment><![CDATA[ Inputs]]></Comment>
@@ -41,10 +45,6 @@
 				</Var>
 				<Var>
 					<Name>GVL.PB_EE_Ungrip</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL.PB_EMG_STOP</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>

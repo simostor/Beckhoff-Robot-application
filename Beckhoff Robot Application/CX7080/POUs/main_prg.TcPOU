@@ -15,9 +15,9 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF GVL.PB_EMG_STOP THEN
+      <ST><![CDATA[IF NOT GVL.PB_EMG_STOP AND NOT (gvl.system_state = state_enum.startup_mode) THEN
 	GVL.system_state := state_enum.emg_stop_mode;
-ELSIF GVL.modbus_comm_fault THEN
+ELSIF GVL.modbus_comm_fault AND NOT (gvl.system_state = state_enum.startup_mode)  THEN
 	GVL.system_state := state_enum.comm_fault_mode;
 END_IF
 
