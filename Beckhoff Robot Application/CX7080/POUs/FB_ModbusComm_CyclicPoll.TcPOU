@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_ModbusComm_CyclicPoll" Id="{1baef8da-7271-4b55-859d-971a63fa051c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ModbusComm_CyclicPoll
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+Description:
+The Beckhoff CX7080 PLC communicates as a Modbus master with the Arduino UNO which is a Modbus slave.
+The way the Modbus communication should work is up to the user to decide, and can be eithr event driven or 
+cyclically polling the slave.
+For simplicity, this FB will be polling the Modbus register of the slave Arduino each time the program is run.
+Note: Even though the Modbus poll is done every time the FB has been scanned, does not mean 
+that the read write cycle is done. Some delay must be expeced.
+
+These are the registers to be used:
+1: Base angle
+2: Shoulder angle
+3: Elbow angle
+4: Gripper parameter
+5: Watchdog
+6: Blank
+7: Blank
+8: Blank
+9: Blank
+10: Blank
+*)]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

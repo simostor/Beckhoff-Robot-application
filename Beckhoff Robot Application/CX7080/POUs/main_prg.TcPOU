@@ -11,7 +11,7 @@ VAR
 	fb_Jog_Cartesian : FB_Jog_Cartesian;
 	fb_Jog_Joint : FB_Jog_Joint;
 	fb_Manual : FB_Manual;
-	fb_ModbusComm : FB_ModbusComm;
+	fb_ModbusComm_CyclicPoll : FB_ModbusComm_CyclicPoll;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -39,7 +39,7 @@ state_enum.auto_mode:
 	fb_Auto();
 END_CASE
 
-fb_ModbusComm();
+fb_ModbusComm_CyclicPoll();
 
 ]]></ST>
     </Implementation>
