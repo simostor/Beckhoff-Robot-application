@@ -7,10 +7,38 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
+	fb_Blink_Reset: FB_Blink;
+	resetPushTime : TIME := T#3S;
+	resetBlinkOnTime : TIME := T#500ms;
+	resetTimer: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF NOT GVL.PB_EMG_STOP THEN
+	GVL.LED_EMG_STOP := TRUE;
+	GVL.LED_Reset := FALSE;
+ELSE
+	GVL.LED_EMG_STOP := FALSE;
+END_IF
+
+IF GVL.PB_EMG_STOP AND NOT GVL.PB_Reset THEN
+	GVL.LED_EMG_STOP := TRUE;
+ELSE
+	GVL.LED_EMG_STOP := FALSE;
+END_IF
+
+IF GVL.PB_EMG_STOP AND GVL.PB_Reset THEN
+	resetTimer(IN:= GVL.PB_Reset, PT:= resetPushTime, Q=> , ET=> );
+END_IF;
+
+IF GVL.PB_Reset AND NOT resetTimer.Q THEN
+	fb_Blink_Reset(OnOffTime:= resetBlinkOnTime, TriggerBlink:= TRUE, BlinkSignal=> GVL.LED_Reset);
+ELSIF GVL.PB_Reset AND resetTimer.Q THEN
+	fb_Blink_Reset(OnOffTime:= resetBlinkOnTime, TriggerBlink:= FALSE, BlinkSignal=> GVL.LED_Reset);
+	GVL.LED_Reset := FALSE;
+	GVL.system_state := state_enum.auto_mode; // TODO: Should change back to last state, not auto_mode
+END_IF;
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
