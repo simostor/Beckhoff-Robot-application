@@ -3,10 +3,55 @@
   <POU Name="FB_ModbusComm_CyclicPoll" Id="{1baef8da-7271-4b55-859d-971a63fa051c}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ModbusComm_CyclicPoll
 VAR_INPUT
+	Write_J1 : INT;
+	Write_J2 : INT;
+	Write_J3 : INT;
+	Write_Gripper : INT;
+	Write_Watchdog : INT;
+	Write_Blank1 : INT;
+	Write_Blank2 : INT;
+	Write_Blank3 : INT;
+	Write_Blank4 : INT;
+	Write_Blank5 : INT;
 END_VAR
 VAR_OUTPUT
+	Read_Blank1 : INT;
+	Read_Blank2 : INT;
+	Read_Blank3 : INT;
+	Read_Blank4 : INT;
+	Read_Blank5 : INT;
+	Read_Blank6 : INT;
+	Read_Blank7 : INT;
+	Read_Blank8 : INT;
+	Read_Blank9 : INT;
+	Read_Blank10 : INT;
 END_VAR
 VAR
+	MB_Master: ModbusRtuMaster_PcCOM;
+	MB_ID: BYTE := 1;
+	
+	Data_Read : ARRAY[0..9] OF INT;
+	Enable_Read: BOOL;
+	Busy_Read: BOOL;
+	Error_Read : BOOL;
+	ErrorId_Read: Tc2_ModbusRTU.MODBUS_ERRORS;
+	Register_Read_Address: WORD := 0;
+
+	Data_Write : ARRAY[0..9] OF INT;
+	Enable_Write: BOOL;
+	Busy_Write: BOOL;
+	Error_Write : BOOL;
+	ErrorId_Write: Tc2_ModbusRTU.MODBUS_ERRORS;
+	Register_Write_Address: WORD := 10;
+	
+	state : BOOL;
+	Toggle_Auto : BOOL := TRUE;
+	
+	timer: TON;              	// Timer On Delay function block
+    clockSignal: BOOL := FALSE; // Output signal that toggles
+    period: TIME := T#1MS;  	// Polling frequency
+	
+	counter : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -18,19 +63,82 @@ cyclically polling the slave.
 For simplicity, this FB will be polling the Modbus register of the slave Arduino each time the program is run.
 Note: Even though the Modbus poll is done every time the FB has been scanned, does not mean 
 that the read write cycle is done. Some delay must be expeced.
+*)
 
-These are the registers to be used:
-1: Base angle
-2: Shoulder angle
-3: Elbow angle
-4: Gripper parameter
-5: Watchdog
-6: Blank
-7: Blank
-8: Blank
-9: Blank
-10: Blank
-*)]]></ST>
+
+timer(IN := NOT timer.Q, PT := period);
+IF timer.Q THEN
+    clockSignal := NOT clockSignal;  // Toggle the signal
+END_IF;
+
+
+
+MB_Master.ReadRegs(
+    UnitID:= MB_ID, 
+    Quantity:= 10, 
+    MBAddr:= Register_Read_Address, 
+    cbLength:= SIZEOF(Data_Read), 
+    pMemoryAddr:= ADR(Data_Read), 
+    Execute:= Enable_Read, 
+    Timeout:= T#100ms, 
+    BUSY=> Busy_Read, 
+    Error=> Error_Read, 
+    ErrorId=> ErrorId_Read, 
+    cbRead=>);
+	
+	
+
+Data_Read[0] := Read_Blank1;
+Data_Read[1] := Read_Blank2;
+Data_Read[2] := Read_Blank3;
+Data_Read[3] := Read_Blank4;
+Data_Read[4] := Read_Blank5;
+Data_Read[5] := Read_Blank6;
+Data_Read[6] := Read_Blank7;
+Data_Read[7] := Read_Blank8;
+Data_Read[8] := Read_Blank9;
+Data_Read[9] := Read_Blank10;
+	
+
+Data_Write[0] := Write_J1;
+Data_Write[1] := Write_J2;
+Data_Write[2] := Write_J3;
+Data_Write[3] := Write_Gripper;
+Data_Write[4] := Write_Watchdog;
+Data_Write[5] := Write_Blank1;
+Data_Write[6] := Write_Blank2;
+Data_Write[7] := Write_Blank3;
+Data_Write[8] := Write_Blank4;
+Data_Write[9] := Write_Blank5;
+	
+
+MB_Master.WriteRegs(
+    UnitID:= MB_ID, 
+    Quantity:= 10, 
+    MBAddr:= Register_Write_Address, 
+    cbLength:= SIZEOF(Data_Write), 
+    pMemoryAddr:= ADR(Data_Write), 
+    Execute:= Enable_Write, 
+    Timeout:= T#100ms, 
+    BUSY=> Busy_Write, 
+    Error=> Error_Write, 
+    ErrorId=> ErrorId_Write, 
+    cbRead=>);
+
+
+
+IF Toggle_Auto THEN	
+	IF clockSignal = TRUE THEN;
+		Enable_Read := FALSE;
+		Enable_Write := TRUE;
+		state := FALSE;
+	ELSE
+		Enable_Read := TRUE;
+		Enable_Write := FALSE;
+		state := TRUE;
+	END_IF
+END_IF;
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
