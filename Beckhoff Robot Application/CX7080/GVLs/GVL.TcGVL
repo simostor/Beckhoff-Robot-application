@@ -9,6 +9,9 @@ VAR_GLOBAL
 	J1_Home_Pos : INT := 135; // Degrees
 	J2_Home_Pos : INT := 135; // Degrees
 	J3_Home_Pos : INT := 135; // Degrees
+	J1_Value : INT := 135;
+	J2_Value : INT := 135;
+	J3_Value : INT := 135;
 	
 	// Inputs
 	input1 AT %I* : BOOL;
@@ -45,6 +48,29 @@ VAR_GLOBAL
 	LED_Start_Pause AT %Q* : BOOL;
 	LED_Comm_Fault AT %Q* : BOOL;
 	LED_Warning AT %Q* : BOOL;
-END_VAR]]></Declaration>
+	
+	// Modbus registers
+	MB_Write_J1 : INT;
+	MB_Write_J2 : INT;
+	MB_Write_J3 : INT;
+	MB_Write_Gripper : INT;
+	MB_Write_Watchdog : INT;
+	MB_Write_Blank1 : INT;
+	MB_Write_Blank2 : INT;
+	MB_Write_Blank3 : INT;
+	MB_Write_Blank4 : INT;
+	MB_Write_Blank5 : INT;
+	MB_Read_Watchdog : INT;
+	MB_Read_Blank2 : INT;
+	MB_Read_Blank3 : INT;
+	MB_Read_Blank4 : INT;
+	MB_Read_Blank5 : INT;
+	MB_Read_Blank6 : INT;
+	MB_Read_Blank7 : INT;
+	MB_Read_Blank8 : INT;
+	MB_Read_Blank9 : INT;
+	MB_Read_Blank10 : INT;
+END_VAR
+	]]></Declaration>
   </GVL>
 </TcPlcObject>
