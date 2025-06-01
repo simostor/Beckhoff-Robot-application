@@ -3,14 +3,85 @@
   <POU Name="FB_Jog_Joint" Id="{8f1e9f20-798c-4943-94cf-09207669ac31}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Jog_Joint
 VAR_INPUT
+	StopServos : BOOL;
+	RampSpeedSetting : BOOL; // False : Low speed, True: High speed
+	BaseIncreaseCW : BOOL;
+	BaseIncreaseCCW : BOOL;
+	ShoulderIncreaseCW : BOOL;
+	ShoulderIncreaseCCW : BOOL;
+	ElbowIncreaseCW : INT;
+	ElbowIncreaseCCW : INT;
+	
+	RampSpeedLow : REAL;
+	RampSpeedHigh : REAL;
+	BaseAngleMin : INT;
+	BaseAngleMax : INT;
+	ShoulderAngleMin : INT;
+	ShoulderAngleMax : INT;
+	ElbowAngleMin : INT;
+	ElbowAngleMax : INT;
+	RampCycleTime : TIME; // Must be the same as task cycle time
+	BaseStartPos : INT;
+	ShoulderStartPos : INT;
+	ElbowStartPos : INT;
 END_VAR
 VAR_OUTPUT
+	BaseServoOutput : INT;
+	ShoulderServoOutput : INT;
+	ElbowServoOutput : INT;
 END_VAR
 VAR
+	fb_Base_Servo: FB_RC_Servo;
+	fb_ElbowServo: FB_RC_Servo;
+	fb_ShoulderServo: FB_RC_Servo;
+	CurrentSpeedSetting : REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF RampSpeedSetting THEN
+	CurrentSpeedSetting := RampSpeedHigh;
+ELSE
+	CurrentSpeedSetting := RampSpeedLow;
+END_IF
+
+
+fb_Base_Servo(
+	stop:= StopServos, 
+	setpoint:= , 
+	rampSpeed:= CurrentSpeedSetting, 
+	trapezoidalProfileActive:= , 
+	servoAngleMin:= , 
+	servoAngleMax:= , 
+	rampCycleTime:= , 
+	rampStartPos:= , 
+	currentPositionSetpoint=> , 
+	error=> );
+
+fb_ShoulderServo(
+	stop:= StopServos, 
+	setpoint:= , 
+	rampSpeed:= CurrentSpeedSetting, 
+	trapezoidalProfileActive:= , 
+	servoAngleMin:= , 
+	servoAngleMax:= , 
+	rampCycleTime:= , 
+	rampStartPos:= , 
+	currentPositionSetpoint=> , 
+	error=> );
+	
+fb_ElbowServo(
+	stop:= StopServos, 
+	setpoint:= , 
+	rampSpeed:= CurrentSpeedSetting, 
+	trapezoidalProfileActive:= , 
+	servoAngleMin:= , 
+	servoAngleMax:= , 
+	rampCycleTime:= , 
+	rampStartPos:= , 
+	currentPositionSetpoint=> , 
+	error=> );
+
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
