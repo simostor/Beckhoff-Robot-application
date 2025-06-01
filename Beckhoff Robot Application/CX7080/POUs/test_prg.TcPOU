@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="test_prg" Id="{dccea0a4-b09a-4ed4-8374-48cd9933971e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM test_prg
+VAR
+	fb_Blink: FB_Blink;
+	triggerBlink : BOOL;
+	test_signal : BOOL;
+	blinkTime : TIME := T#500MS;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fb_Blink(OnOffTime:= blinkTime, TriggerBlink:= triggerBlink, BlinkSignal=> test_signal);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
