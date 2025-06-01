@@ -9,9 +9,9 @@ VAR
 	fb_Comm_Fault : FB_Comm_Fault;
 	fb_Emg_Stop : FB_Emg_Stop;
 	fb_Jog_Cartesian : FB_Jog_Cartesian;
-	fb_Jog_Joint : FB_Jog_Joint;
 	fb_Manual : FB_Manual;
-	fb_ModbusComm_CyclicPoll : FB_ModbusComm_CyclicPoll;
+	fb_Jog_Joint: FB_Jog_Joint;
+	fb_ModbusComm_CyclicPoll: FB_ModbusComm_CyclicPoll;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -26,7 +26,30 @@ CASE gvl.system_state OF
 state_enum.startup_mode:
 	fb_Startup();
 state_enum.jog_joint_mode:
-	fb_Jog_Joint();
+	fb_Jog_Joint(
+	StopServos:= , 
+	RampSpeedSetting:= , 
+	BaseIncreaseCW:= , 
+	BaseIncreaseCCW:= , 
+	ShoulderIncreaseCW:= , 
+	ShoulderIncreaseCCW:= , 
+	ElbowIncreaseCW:= , 
+	ElbowIncreaseCCW:= , 
+	RampSpeedLow:= , 
+	RampSpeedHigh:= , 
+	BaseAngleMin:= , 
+	BaseAngleMax:= , 
+	ShoulderAngleMin:= , 
+	ShoulderAngleMax:= , 
+	ElbowAngleMin:= , 
+	ElbowAngleMax:= , 
+	RampCycleTime:= , 
+	BaseStartPos:= , 
+	ShoulderStartPos:= , 
+	ElbowStartPos:= , 
+	BaseServoOutput=> , 
+	ShoulderServoOutput=> , 
+	ElbowServoOutput=> );
 state_enum.jog_cartesian_mode:
 	fb_Jog_Cartesian();
 state_enum.manual_mode:
@@ -39,8 +62,30 @@ state_enum.auto_mode:
 	fb_Auto();
 END_CASE
 
-fb_ModbusComm_CyclicPoll();
+IF NOT (GVL.system_state = state_enum.startup_mode OR GVL.system_state = state_enum.emg_stop_mode) THEN
+	fb_ModbusComm_CyclicPoll(
+	Write_J1:= GVL.MB_Write_J1, 
+	Write_J2:= GVL.MB_Write_J2, 
+	Write_J3:= GVL.MB_Write_J3, 
+	Write_Gripper:= GVL.MB_Write_Gripper, 
+	Write_Watchdog:= GVL.MB_Write_Watchdog, 
+	Write_Blank1:= GVL.MB_Write_Blank1, 
+	Write_Blank2:= GVL.MB_Write_Blank2, 
+	Write_Blank3:= GVL.MB_Write_Blank3, 
+	Write_Blank4:= GVL.MB_Write_Blank4, 
+	Write_Blank5:= GVL.MB_Write_Blank5, 
+	Read_Watchdog=> GVL.MB_Read_Watchdog, 
+	Read_Blank2=> GVL.MB_Read_Blank2, 
+	Read_Blank3=> GVL.MB_Read_Blank3, 
+	Read_Blank4=> GVL.MB_Read_Blank4, 
+	Read_Blank5=> GVL.MB_Read_Blank5, 
+	Read_Blank6=> GVL.MB_Read_Blank6, 
+	Read_Blank7=> GVL.MB_Read_Blank7, 
+	Read_Blank8=> GVL.MB_Read_Blank8, 
+	Read_Blank9=> GVL.MB_Read_Blank9, 
+	Read_Blank10=> GVL.MB_Read_Blank10);
 
+END_IF;
 ]]></ST>
     </Implementation>
   </POU>
