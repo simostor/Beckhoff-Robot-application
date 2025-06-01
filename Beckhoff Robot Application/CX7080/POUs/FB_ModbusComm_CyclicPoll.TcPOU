@@ -7,7 +7,7 @@ VAR_INPUT
 	Write_J2 : INT;
 	Write_J3 : INT;
 	Write_Gripper : INT;
-	Write_Watchdog : INT;
+	Write_Watchdog: INT;
 	Write_Blank1 : INT;
 	Write_Blank2 : INT;
 	Write_Blank3 : INT;
@@ -15,7 +15,7 @@ VAR_INPUT
 	Write_Blank5 : INT;
 END_VAR
 VAR_OUTPUT
-	Read_Blank1 : INT;
+	Read_Watchdog : INT;
 	Read_Blank2 : INT;
 	Read_Blank3 : INT;
 	Read_Blank4 : INT;
@@ -88,7 +88,7 @@ MB_Master.ReadRegs(
 	
 	
 
-Data_Read[0] := Read_Blank1;
+Data_Read[0] := Read_Watchdog;
 Data_Read[1] := Read_Blank2;
 Data_Read[2] := Read_Blank3;
 Data_Read[3] := Read_Blank4;
