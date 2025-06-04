@@ -3,14 +3,44 @@
   <POU Name="FB_Jog_Cartesian" Id="{2d54d00d-baff-42ca-81cb-c86a3364ebdc}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Jog_Cartesian
 VAR_INPUT
+	X : REAL;
+	Y : REAL;
+	Z : REAL;
+	L1 : REAL;
+	L2 : REAL;
+	L3 : REAL;
+	
 END_VAR
 VAR_OUTPUT
+	OutputBaseAngle : INT;
+	OutputShoulderAngle : INT;
+	OutputElbowAngle : INT;
 END_VAR
+
 VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[//		     GOTTA GO CARTESIAN
+//              ___------__
+//        |\__-- /\       _-
+//        |/    __      -
+//        //\  /  \    /__
+//        |  o|  0|__     --_
+//        \\____-- __ \   ___-
+//        (@@    __/  / /_
+//           -_____---   --_
+//            //  \ \\   ___-
+//          //|\__/  \\  \
+//          \_-\_____/  \-\
+//               // \\--\|   
+//          ____//  ||_
+//         /_____\ /___\
+//       ______________________⠀⠀
+
+OutputBaseAngle := REAL_TO_INT(L1 * TAN(X));
+OutputShoulderAngle := REAL_TO_INT(L2 * SIN(Y));
+OutputElbowAngle := REAL_TO_INT(L3 * COS(Z));]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
