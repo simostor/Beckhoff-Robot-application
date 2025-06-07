@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
-  <GVL Name="GVL" Id="{6855ee8d-008b-438b-bf55-2ed7d4bc7b96}">
+  <GVL Name="GVL_1" Id="{0728d8ce-c625-4ca1-a324-7f06ef068699}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	// Internal system parameters

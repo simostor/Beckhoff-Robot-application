@@ -9,9 +9,8 @@ VAR_INPUT
 	BaseIncreaseCCW : BOOL;
 	ShoulderIncreaseCW : BOOL;
 	ShoulderIncreaseCCW : BOOL;
-	ElbowIncreaseCW : INT;
-	ElbowIncreaseCCW : INT;
-	
+	ElbowIncreaseCW : BOOL;
+	ElbowIncreaseCCW : BOOL;
 	RampSpeedLow : REAL;
 	RampSpeedHigh : REAL;
 	BaseAngleMin : INT;
@@ -35,6 +34,9 @@ VAR
 	fb_ElbowServo: FB_RC_Servo;
 	fb_ShoulderServo: FB_RC_Servo;
 	CurrentSpeedSetting : REAL;
+	BaseSetpoint : INT;
+	ShoulderSetpoint : INT;
+	ElbowSetpoint : INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -44,44 +46,68 @@ ELSE
 	CurrentSpeedSetting := RampSpeedLow;
 END_IF
 
+IF BaseIncreaseCW AND NOT BaseIncreaseCCW THEN
+	BaseSetpoint := BaseAngleMin;
+ELSIF NOT BaseIncreaseCW AND BaseIncreaseCCW THEN
+	BaseSetpoint := BaseAngleMax;
+ELSIF NOT BaseIncreaseCW AND NOT BaseIncreaseCCW THEN
+	BaseSetpoint := BaseServoOutput;
+END_IF
+
+IF ShoulderIncreaseCW AND NOT ShoulderIncreaseCCW THEN
+	ShoulderSetpoint := ShoulderAngleMin;
+ELSIF NOT ShoulderIncreaseCW AND ShoulderIncreaseCCW THEN
+	ShoulderSetpoint := ShoulderAngleMax;
+ELSIF NOT ShoulderIncreaseCW AND NOT ShoulderIncreaseCCW THEN
+	ShoulderSetpoint := ShoulderServoOutput;
+END_IF
+
+IF ElbowIncreaseCW AND NOT ElbowIncreaseCCW THEN
+	ElbowSetpoint := ElbowAngleMin;
+ELSIF NOT ElbowIncreaseCW AND ElbowIncreaseCCW THEN
+	ElbowSetpoint := ElbowAngleMax;
+ELSIF NOT ElbowIncreaseCW AND NOT ElbowIncreaseCCW THEN
+	ElbowSetpoint := ElbowServoOutput;
+END_IF
+
 
 fb_Base_Servo(
 	stop:= StopServos, 
-	setpoint:= , 
+	setpoint:= BaseSetpoint, 
 	rampSpeed:= CurrentSpeedSetting, 
 	trapezoidalProfileActive:= , 
-	servoAngleMin:= , 
-	servoAngleMax:= , 
-	rampCycleTime:= , 
-	rampStartPos:= , 
-	currentPositionSetpoint=> , 
+	servoAngleMin:= BaseAngleMin, 
+	servoAngleMax:= BaseAngleMax, 
+	rampCycleTime:= RampCycleTime, 
+	rampStartPos:= BaseStartPos, 
+	currentPositionSetpoint=> BaseServoOutput, 
 	error=> );
 
+	
 fb_ShoulderServo(
 	stop:= StopServos, 
-	setpoint:= , 
+	setpoint:= ShoulderSetpoint, 
 	rampSpeed:= CurrentSpeedSetting, 
 	trapezoidalProfileActive:= , 
-	servoAngleMin:= , 
-	servoAngleMax:= , 
-	rampCycleTime:= , 
-	rampStartPos:= , 
-	currentPositionSetpoint=> , 
+	servoAngleMin:= ShoulderAngleMin, 
+	servoAngleMax:= ShoulderAngleMax, 
+	rampCycleTime:= RampCycleTime, 
+	rampStartPos:= ShoulderStartPos, 
+	currentPositionSetpoint=> ShoulderServoOutput, 
 	error=> );
+	
 	
 fb_ElbowServo(
 	stop:= StopServos, 
-	setpoint:= , 
+	setpoint:= ElbowSetpoint, 
 	rampSpeed:= CurrentSpeedSetting, 
 	trapezoidalProfileActive:= , 
-	servoAngleMin:= , 
-	servoAngleMax:= , 
-	rampCycleTime:= , 
-	rampStartPos:= , 
-	currentPositionSetpoint=> , 
-	error=> );
-
-]]></ST>
+	servoAngleMin:= ElbowAngleMin, 
+	servoAngleMax:= ElbowAngleMax, 
+	rampCycleTime:= RampCycleTime, 
+	rampStartPos:= ElbowStartPos, 
+	currentPositionSetpoint=> ElbowServoOutput, 
+	error=> );]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
